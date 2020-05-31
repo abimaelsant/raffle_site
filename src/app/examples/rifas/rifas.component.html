@@ -1,0 +1,70 @@
+<div class="page-header" filter-color="black" style="background-color: #333333;">
+    <div class="main">
+
+        <div class="section"
+            style="background-color: #333333; color: cornsilk; font-weight: 600;">
+            <h2 class="sorteios" style="text-align: center;">Sorteios</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3" *ngFor="let rifa of rifas">
+                        <mdb-card
+                            style="background-color: #333333; color: cornsilk; font-weight: 600;">
+                            <!--Card image-->
+                            <mdb-card-img class="imagemrifa" src="{{selecionaImagem(rifa.images)}}" alt="Card image cap" data-ride="carousel"></mdb-card-img>
+                            <!--Card content-->
+                            
+
+                          
+
+                         
+                                    <div class="col-md-12 esquerda">
+                                        <h4>{{ rifa.vehicle.model }} - {{ rifa.vehicle.year }}</h4> 
+                                        <h5>{{ rifa.vehicle.observation }}</h5>
+                                        <h6>{{ rifa.description }}</h6>
+                                    </div>  
+                                
+                          
+                                
+
+                            <div class="col-md-12">
+                                <a href="/rifas/{{rifa.id}}" mdbBtn class="btn btn-outline-warning waves-light w-100 p-3"
+                                    *ngIf="rifa.status == 'ESGOTADO'" 
+                                    style="margin-left: -1px; font-weight: 700; font-size: 20px;"mdbWavesEffect>Esgotado</a>
+                                <a href="/rifas/{{rifa.id}}" mdbBtn class="btn btn-outline-danger waves-light w-100 p-3"
+                                    *ngIf="rifa.status == 'ENCERRADO'" 
+                                    style="margin-left: -1px; font-weight: 700; font-size: 20px;"mdbWavesEffect>Ver Resultado</a>
+                                <a href="/rifas/{{rifa.id}}" mdbBtn class="btn btn-outline-warning waves-light w-100 p-3"
+                                    *ngIf="rifa.status == 'ABERTO'" 
+                                     style="margin-left: -1px; font-weight: 700; font-size: 20px;"
+                                     mdbWavesEffect>Comprar Rifa</a>
+
+                                    </div>
+                        </mdb-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+     
+
+    </div>
+    <footer class="footer position-relative" data-background-color="black">
+        <div class="container">
+           
+            <nav>
+                <ul>
+                    <li>
+                        <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" target="_blank"><img class="link_thumb" src="" title=""> Instagram</a>
+
+                       
+                    </li>
+                </ul>
+            </nav>
+
+            
+            <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" class="copyright">
+                &copy;
+                {{data | date: 'yyyy'}}, Rifas terra do mel
+            </a>
+        </div>
+    </footer>
+</div>

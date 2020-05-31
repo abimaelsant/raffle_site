@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~bootstrap/scss/bootstrap.scss";
+
+
+  
+
+.page-header .container > .content-center {
+    
+    padding: 0 40px !important;
+    
+}
+
+.navbar.navbar-transparent {
+    background: transparent !important;
+    box-shadow: none;
+    color: #FFFFFF;
+    padding-top: 20px;
+}
+
+.bg-primary {
+    background: -webkit-gradient(linear, left top, right top, from(#faba45), to(#fdcc013b)) !important;
+}
+
+.fa-chevron-right:before {
+    content: "";
+    font-size: 0px !important;
+}
+.fa-chevron-left:before {
+    content: "";
+    font-size: 0px !important;
+
+}
+.center{
+    text-align: center;
+}
+
+.whatsapp{
+    background-color: #59ba41 !important;
+    font-size: 18px !important;
+}
+
+.col-md-4 {
+    flex: 0 0 33.3333333333%;
+    max-width: none;
+}
+
+
+.esquerda{
+    text-align: left;
+   // margin-right: 1px;
+}
+
+.img-fluid {
+   
+    height: 200px;
+
+    object-fit: cover;
+    object-position: center;
+}
+
+.d-block{
+    height: 400px !important;
+
+    object-fit: cover;
+    object-position: center;
+}
+

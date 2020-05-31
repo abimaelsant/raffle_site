@@ -1,0 +1,196 @@
+<div class="page-header" filter-color="black" style="background-color: #333333;">
+    <div class="main">
+
+        <div class="section"
+            style="background-color: #333333; color: cornsilk;">
+            <h3 class="sorteios" style="text-align: center;"></h3>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <mdb-card
+                            style="background-color: #333333; color: cornsilk; font-weight: 600;">
+                            <!--Card image-->
+                    
+                                    <img class="d-block w-100"  src="{{selecionaImagem(rifa.images)}}" alt="">
+                                                            <!--Card content-->
+                        </mdb-card>
+                       
+                    </div>
+                    <div class="col-md-4 col">
+                        <h4>{{ rifa.vehicle.model }} - {{ rifa.vehicle.year }}</h4>
+                        <h5>{{ rifa.vehicle.observation }}</h5>
+                        <h6>{{ rifa.description }}</h6>
+                    </div>
+                    <div class="container">
+                        <div class="row" *ngIf="ganhador">
+                            <div class="col-md-12">
+                                <h4 style="color: red;">Ganhador: {{ ganhador.name }} - Número: {{ ganhador.point }}</h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="float: left; font-weight: 700; margin-top: 0px; background-color: #333333;">
+                                <button class="btn btn-info" (click)="filtro('ABERTO')" style="font-weight: 700;">ABERTO</button>
+                                <button class="btn btn-warning" (click)="filtro('RESERVADO')" style="font-weight: 700;">RESERVADO</button>
+                                <button class="btn btn-success" (click)="filtro('PAGO')" style="font-weight: 700;">PAGO</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div *ngIf="mensagemPoint" class="alert alert-success" role="alert">
+                                    {{mensagemPoint}}
+                                </div>
+                                
+                                <app-card [hidHeader]="true" cardClass="tab-card">
+                                    <div class="points" *ngFor="let point of points">
+                                        <button type="button" *ngIf="point.status == 'ABERTO'" (click)="open(classic,'' , ''); getPoint(point.point)"
+                                            class="{{ checkStatusCor(point.status) }} redondo" 
+                                            ngbTooltip="{{ returnMensagem(point.point, point.status, point.name) }}">{{ point.point }}
+                                        </button>
+                                        <button type="button" *ngIf="point.status != 'ABERTO'" (click)="getPoint(point.point)"
+                                            class="{{ checkStatusCor(point.status) }} redondo" 
+                                            ngbTooltip="{{ returnMensagem(point.point, point.status, point.name) }}">{{ point.point }}
+                                        </button>
+                                    </div>
+                                </app-card>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        <section id="pagar" style="background-color: #333333; color: cornsilk; font-weight: 600;">
+            
+            <div class="container section" style="background-color: #333333; color: cornsilk; font-weight: 600;">
+                <h2 class="center"> Como pagar?</h2>
+                <div class="row">
+                    <div class="col-md-2 center">
+                        <img src="assets/img/bb.jpg" class="img-thumbnail">
+                        <p class="center">
+                            Banco do Brasil <br>
+                            Ag: 3350-2<br>
+                            Conta Poupança: 14.332-4 <br> 
+                            Variacao: 51 <br>
+                            Diego Ramon Rodrigues Alves
+                        </p>
+                    </div>
+
+                    <div class="col-md-2 center">
+                        <img src="assets/img/banconeon.png" class="img-thumbnail">
+                        <p class="center">
+                            Banco Neon <br>
+                            Ag: 0655 <br>
+                            Conta: 4763128-7 <br>
+                            Diego Ramon Rodrigues Alves
+                        </p>
+                    </div>
+
+                    <div class="col-md-2 center">
+                        <img src="assets/img/santander.jpg" class="img-thumbnail">
+                        <p class="center">
+                            Santander <br>
+                            Ag: 2246 <br>
+                            C/c: 1001222-4 <br>
+                            Diego Ramon Rodrigues Alves <br>
+                            Cpf: 047.470.473-44
+                        </p>
+                    </div>
+
+                    <div class="col-md-2 center">
+                        <img src="assets/img/picpay.jpg" class="img-thumbnail">
+                        <p class="center">
+                            @diego.alves941<br>
+                            Diego Alves
+                        </p>
+                    </div>
+
+                    <div class="col-md-2 center">
+                        <img src="assets/img/bradesco.jpg" class="img-thumbnail">
+                        <p class="center">
+                            Conta Bradesco PF <br>
+                            Ag: 0937 <br>
+                            Cc: 62784-4 <br>
+                            Luis Fernando Martins Luz e Silva<br>
+                            040.684.553-09
+                        </p>
+                    </div>
+
+                    <div class="col-md-2 center">
+                        <img src="assets/img/caixa.jpg" class="img-thumbnail">
+                        <p class="center">
+                            Caixa Economica <br>
+                            Ag: 0639 <br>
+                            Conta: 37.430-2 <br>
+                            Op: 001 <br>
+                            Diego Ramon Rodrigues Alves
+                        </p>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row center"> <br><br>
+                    <div class="col-md-12">
+                        <h3 > Os pagamentos devem ser realizados via transferência bancária. <br>O comprovante deve ser enviado paga o seguinte número via whatsapp</h3>
+                    </div>
+                    <br>
+                    <div class="col-md-12">
+                        <button type="button" class="btn btn-success whatsapp"> <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                            89 99999-9933</button>
+                    </div>
+                  
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+    
+    
+    
+    <footer class="footer position-relative" data-background-color="black">
+        <div class="container">
+           
+            <nav>
+                <ul>
+                    <li>
+                        <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" target="_blank"><img class="link_thumb" src="" title=""> Instagram</a>
+
+                       
+                    </li>
+                </ul>
+            </nav>
+
+            
+            <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" class="copyright">
+                &copy;
+                {{data | date: 'yyyy'}}, Rifas terra do mel
+            </a>
+        </div>
+    </footer>
+</div>
+
+<ng-template #classic let-c="close" let-d="dismiss">
+    <div class="modal-header justify-content-center">
+        <button type="button" class="close" (click)="d('Cross click')">
+            <i class="now-ui-icons ui-1_simple-remove"></i>
+        </button>
+        <h4 class="title title-up">Comprar ponto</h4>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+              <label for="formGroupExampleInput">Seu nome</label>
+              <input type="text" class="form-control" id="formGroupExampleInput" [(ngModel)]="comprador.name" name="name" placeholder="Nome">
+            </div>
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Telefone</label>
+              <input type="text" class="form-control" id="formGroupExampleInput2" [(ngModel)]="comprador.phone" name="phone" placeholder="Telefone">
+            </div>
+          </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" [disabled]="comprador.name == '' || comprador.phone == ''" class="btn btn-info" (click)="comprar(); c('Close click')">Comprar</button>
+    </div>
+</ng-template>
