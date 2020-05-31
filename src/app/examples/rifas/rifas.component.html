@@ -19,8 +19,8 @@
                          
                                     <div class="col-md-12 esquerda">
                                         <h4>{{ rifa.vehicle.model }} - {{ rifa.vehicle.year }}</h4> 
-                                        <h5>{{ rifa.vehicle.observation }}</h5>
-                                        <h6>{{ rifa.description }}</h6>
+                                        <h5 class="tam">{{ rifa.vehicle.observation }}</h5>
+                                        <h6 class="tam">{{ rifa.description }}</h6>
                                     </div>  
                                 
                           
@@ -48,23 +48,32 @@
 
     </div>
     <footer class="footer position-relative" data-background-color="black">
-        <div class="container">
-           
-            <nav>
-                <ul>
-                    <li>
-                        <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" target="_blank"><img class="link_thumb" src="" title=""> Instagram</a>
+        <div class="container center">
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" target="_blank"><img class="link_thumb" src="" title="">  <i class="fab fa-instagram"></i> Instagram</a>
+ 
+                </div>
+                <div class="col-md-6">
+                    <a href="https://chat.whatsapp.com/E1Lv3kP6nGV27VXhXzBgIO" class="borda" target="_blank"> <i class="fab fa-whatsapp"> </i> Grupo Whatsapp  </a>
+                </div>
+            </div>
 
-                       
-                    </li>
-                </ul>
-            </nav>
+            <div class="container">
 
             
-            <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" class="copyright">
-                &copy;
-                {{data | date: 'yyyy'}}, Rifas terra do mel
-            </a>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" class="fim">
+                        Todos os direitos reservados, Rifas terra do mel
+                     </a>
+                </div>
+            </div>
+           
+        </div> 
+
+            
+           
         </div>
     </footer>
 </div>

@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <div class="page-header clear-filter" filter-color="black">
+        <div class="page-header clear-filter" filter-color="black">
         <div class="page-header-image rellax-header imagemPrincipal" data-rellax-speed="-7"
             style="background-image: url({{imagemPrincipal}});">
 
@@ -27,15 +27,15 @@
             </h6>
         </div>
     </div>
+
+    
     <div class="main">
         <div class="section"
             style="background-color: #333333; color: cornsilk; font-weight: 600;">
             <h2 style="text-align: center;">Sorteios</h2>
            
            
-            <div class="row">
-
-                <div class="col-md-12">
+     
 
                     <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'"
                     [animation]="'slide'">
@@ -46,8 +46,8 @@
                                     alt="Card image cap"></mdb-card-img>
                                     <mdb-card-title style="margin-left: 10px;">
                                         <h4 style="margin-left: 10px;">{{card.vehicle.model}} - {{ card.vehicle.year }}</h4>
-                                        <h5 style="margin-left: 10px;">{{ card.vehicle.observation }}</h5>
-                                        <h6 style="margin-left: 10px;" >{{ card.description }}</h6>
+                                        <h5 style="margin-left: 10px;" class="tam">{{ card.vehicle.observation }}</h5>
+                                        <h6 style="margin-left: 10px;" class="tam">{{ card.description }}</h6>
                                     </mdb-card-title>
 
 
@@ -70,14 +70,12 @@
                     </mdb-carousel-item>
                 </mdb-carousel>
 
-                </div>
-
-            </div>
+             
            
         </div>
         <section id="pagar" style="background-color: #333333; color: cornsilk; font-weight: 600;">
             
-            <div class="container section" style="background-color: #333333; color: cornsilk; font-weight: 600;">
+            <div class="container" style="background-color: #333333; color: cornsilk; font-weight: 600;">
                 <h2 class="center"> Como pagar?</h2>
                 <div class="row">
                     <div class="col-md-2 center">
@@ -87,7 +85,9 @@
                             Ag: 3350-2<br>
                             Conta Poupança: 14.332-4 <br> 
                             Variacao: 51 <br>
-                            Diego Ramon Rodrigues Alves
+                            Diego Ramon Rodrigues Alves <br>
+                            Cpf: 047.470.473-44
+
                         </p>
                     </div>
 
@@ -97,7 +97,9 @@
                             Banco Neon <br>
                             Ag: 0655 <br>
                             Conta: 4763128-7 <br>
-                            Diego Ramon Rodrigues Alves
+                            Diego Ramon Rodrigues Alves <br>
+                            Cpf: 047.470.473-44
+
                         </p>
                     </div>
 
@@ -145,6 +147,7 @@
                     <div class="col-md-2 center">
                         <img src="assets/img/mercadopago.jpg" class="img-thumbnail">
                         <p class="center">
+                            Pagar via Boleto e Cartão de Crédito<br>
                            <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-7166542b-7177-4d54-ba70-8a9b481159d6">Pagar: R$ 10,00</a>  <br>
                            <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-f2183097-14de-48ab-bf87-8a6cd41f924a">Pagar: R$ 13,00</a>  <br>
                            <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-107c492b-1247-41e2-b11c-6f35980daca9">Pagar: R$ 14,00</a>  <br>
@@ -165,17 +168,21 @@
                 <br>
                 <div class="row center"> <br><br>
                     <div class="col-md-12">
-                        <h3 > Os pagamentos devem ser realizados via transferência bancária. <br>O comprovante deve ser enviado paga o seguinte número via whatsapp</h3>
+                        <h3 > Para os pagamentos realizados via transferência bancária, o respectivo comprovante deve ser encaminhado por WhatsApp através do link abaixo</h3>
                     </div>
                     <br>
                     <div class="col-md-12">
+                        
+                        <a href="https://api.whatsapp.com/send?phone=558999143334&text=">
                         <button type="button" class="btn btn-success whatsapp"> <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                            89 99999-9933</button>
+                            (89) 9 9914-3334</button>
+                        </a>
                     </div>
                   
                 </div>
             </div>
-
+            <br>
+            <br>
         </section>
        
        
@@ -184,23 +191,33 @@
       
     </div>
 
-    <footer class="footer" data-background-color="black" id="contato">
-        <div class="container">
-            <nav>
-                <ul>
-                    <li>
-                        <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" target="_blank"><img class="link_thumb" src="" title=""> Instagram</a>
+    <footer id="contato" class="footer position-relative" data-background-color="black">
+        <div class="container center">
+            <div class="row">
+                <div class="col-md-6">
+                    <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" target="_blank"><img class="link_thumb" src="" title="">  <i class="fab fa-instagram"></i> Instagram</a>
+ 
+                </div>
+                <div class="col-md-6">
+                    <a href="https://chat.whatsapp.com/E1Lv3kP6nGV27VXhXzBgIO" class="borda" target="_blank"> <i class="fab fa-whatsapp"> </i> Grupo Whatsapp  </a>
+                </div>
+            </div>
 
-                       
-                    </li>
-                </ul>
-            </nav>
+            <div class="container">
 
             
-            <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" class="copyright">
-                &copy;
-                {{data | date: 'yyyy'}}, Rifas terra do mel
-            </a>
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" class="fim">
+                        Todos os direitos reservados, Rifas terra do mel
+                     </a>
+                </div>
+            </div>
+           
+        </div> 
+
+            
+           
         </div>
     </footer>
 </div>

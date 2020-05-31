@@ -66,3 +66,33 @@
     object-position: center;
 }
 
+.limita{
+    white-space: nowrap; 
+    width: 12em; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    border: 1px solid #000000;
+}
+
+.fim{
+    margin-block-end: -40px;
+}
+
+.borda{
+    border: solid;
+    border-radius: 5px;
+    background-color: #59ba41;
+    border-color: #59ba41;
+
+}
+
+.borda1{
+    padding: 0px !important;
+}
+
+.tam{
+    max-width: 50ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
