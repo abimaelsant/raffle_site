@@ -32,6 +32,7 @@
                                 <button class="btn btn-info" (click)="filtro('ABERTO')" style="font-weight: 700;">ABERTO</button>
                                 <button class="btn btn-warning" (click)="filtro('RESERVADO')" style="font-weight: 700;">RESERVADO</button>
                                 <button class="btn btn-success" (click)="filtro('PAGO')" style="font-weight: 700;">PAGO</button>
+                                <button class="btn btn-black" (click)="openBuscaPontosModal(classicdetails,'' , '');" style="font-weight: 700;">Meus Pontos</button>
                             </div>
                         </div>
                     </div>
@@ -229,5 +230,25 @@
     </div>
     <div class="modal-footer">
         <button type="button" [disabled]="comprador.name == '' || comprador.phone == ''" class="btn btn-info" (click)="comprar(); c('Close click')">Comprar</button>
+    </div>
+</ng-template>
+
+<ng-template #classicdetails let-c="close" let-d="dismiss">
+    <div class="modal-header justify-content-center">
+        <button type="button" class="close" (click)="d('Cross click')">
+            <i class="now-ui-icons ui-1_simple-remove"></i>
+        </button>
+        <h4 class="title title-up">Buscar Meus Pontos</h4>
+    </div>
+    <div class="modal-body">
+        <form>
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Telefone</label>
+              <input type="text" class="form-control" id="formGroupExampleInput2" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="Telefone">
+            </div>
+          </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" [disabled]="phoneNumber.length == 0" class="btn btn-info" (click)="filtroNumeroTelefone(); c('Close click')">Buscar</button>
     </div>
 </ng-template>

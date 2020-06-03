@@ -22,6 +22,7 @@ export class RifaDetalheComponent implements OnInit {
     closeResult: string;
     comprador:any = new Object({ point: '', name: '', phone: '' });
     ganhador:any = null;
+    phoneNumber:any = '';
     constructor(private service: GeralService, private route: ActivatedRoute, private modalService: NgbModal) {
         this.id = this.route.snapshot.paramMap.get("id");
         this.detalhe()
@@ -80,6 +81,18 @@ export class RifaDetalheComponent implements OnInit {
         })
     }
 
+    filtroNumeroTelefone() {
+        const params = new HttpParams({
+            fromObject: {
+                numberPhone: this.phoneNumber
+            }
+          });
+        this.service.httpClient.get(this.service.url + 'raffles/' + this.id + '?'+params).subscribe(res => {
+            this.rifa = res;
+            this.points = this.rifa.point_sale;
+        })
+    }
+
     getPoint(point) {
         this.comprador.point = point;
     }
@@ -91,6 +104,29 @@ export class RifaDetalheComponent implements OnInit {
     }
 
     open(content, type, modalDimension) {
+        if (modalDimension === 'sm' && type === 'modal_mini') {
+            this.modalService.open(content, { windowClass: 'modal-mini modal-primary', size: 'sm' }).result.then((result) => {
+                this.closeResult = `Closed with: ${result}`;
+            }, (reason) => {
+                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+            });
+        } else if (modalDimension == undefined && type === 'Login') {
+          this.modalService.open(content, { windowClass: 'modal-login modal-primary' }).result.then((result) => {
+              this.closeResult = `Closed with: ${result}`;
+          }, (reason) => {
+              this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+          });
+        } else {
+            this.modalService.open(content).result.then((result) => {
+                this.closeResult = `Closed with: ${result}`;
+            }, (reason) => {
+                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+            });
+        }
+
+    }
+
+    openBuscaPontosModal(content, type, modalDimension) {
         if (modalDimension === 'sm' && type === 'modal_mini') {
             this.modalService.open(content, { windowClass: 'modal-mini modal-primary', size: 'sm' }).result.then((result) => {
                 this.closeResult = `Closed with: ${result}`;
