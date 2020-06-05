@@ -96,3 +96,24 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.page-header {
+    height: 100vh;
+    max-height: 400px !important;
+    padding: 0;
+    color: #FFFFFF;
+    position: relative;
+    background-position: center center;
+    background-size: cover;
+    background: -webkit-gradient(linear, left top, right top, from(#00000086), to(#fdcc0100)) !important;
+
+}
+
+.title {
+    margin-top: 200px !important;
+}
+
+.modal-content .modal-header {
+    
+    margin-top: -170px !important;
+}

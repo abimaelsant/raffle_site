@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  URL: 'http://localhost:3333/v1/'//'http://ec2-3-16-109-120.us-east-2.compute.amazonaws.com:3321/v1/'
+  URL: 'http://ec2-3-16-109-120.us-east-2.compute.amazonaws.com:3321/v1/'
 };
