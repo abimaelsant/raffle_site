@@ -105,7 +105,7 @@
     position: relative;
     background-position: center center;
     background-size: cover;
-    background: -webkit-gradient(linear, left top, right top, from(#00000086), to(#fdcc0100)) !important;
+    background: -webkit-gradient(linear, left top, right top, from(#000000), to(#fdcc0100)) !important;
 
 }
 
@@ -116,4 +116,14 @@
 .modal-content .modal-header {
     
     margin-top: -170px !important;
+}
+
+.page-header .page-header-image {
+    position: absolute;
+    background-size: cover;
+    background-position: center center;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+   // margin-left: 10% !important;
 }
