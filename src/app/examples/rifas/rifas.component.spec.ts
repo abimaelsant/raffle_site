@@ -11,7 +11,7 @@ describe('RifaComponent', () => {
       declarations: [ RifaComponent ]
     })
     .compileComponents();
-  }));
+  })); 
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RifaComponent);
