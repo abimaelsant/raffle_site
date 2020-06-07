@@ -85,7 +85,7 @@ export class ComponentsComponent implements OnInit, OnDestroy {
         this.service.httpClient.get(this.service.url + 'home').subscribe(res => {
             this.rifas = res;
             if(this.rifas.length < 1) {
-                this.router.navigate(['/aviso']);
+                this.router.navigate(['/contato']);
                 this.checkExisteConteudo = false;
             }
             this.slides = this.chunk(this.rifas, 3);
