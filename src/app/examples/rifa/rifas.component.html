@@ -1,20 +1,21 @@
 <div class="page-header" filter-color="black" style="background-color: #333333;">
     <div class="main">
 
-        <div class="section"
-            style="background-color: #333333; color: cornsilk;">
+        <div class="section" style="background-color: #333333; color: cornsilk;">
             <h3 class="sorteios" style="text-align: center;"></h3>
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <mdb-card
-                            style="background-color: #333333; color: cornsilk; font-weight: 600;">
+                        <mdb-card style="background-color: #333333; color: cornsilk; font-weight: 600;">
                             <!--Card image-->
-                    
-                                    <img class="d-block w-100"  src="{{selecionaImagem(rifa.images)}}" alt="">
-                                                            <!--Card content-->
+                            <mdb-carousel [isControls]="false" [animation]="'slide'">
+                                <mdb-carousel-item *ngFor="let item of rifa.images">
+                                    <img class="d-block w-100" src="{{item.url}}" alt="First slide">
+                                </mdb-carousel-item>
+                            </mdb-carousel>
+                            <!--Card content-->
                         </mdb-card>
-                       
+
                     </div>
                     <div class="col-md-6 col">
                         <h4>{{ rifa.vehicle.model }} - {{ rifa.vehicle.year }}</h4>
@@ -24,25 +25,32 @@
                     <div class="container">
                         <div class="row" *ngIf="ganhador">
                             <div class="col-md-12">
-                                <h4 style="color: red;">Ganhador: {{ ganhador.name }} - Número: {{ ganhador.point }}</h4>
+                                <h4 style="color: red;">Ganhador: {{ ganhador.name }} - Número: {{ ganhador.point }}
+                                </h4>
                             </div>
-                        
+
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                        
+
                                 <a href="https://api.whatsapp.com/send?phone=558999143334&text=">
-                                <button type="button" class="btn btn-success whatsapp"> <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                                    ENVIAR COMPROVANTE</button>
+                                    <button type="button" class="btn btn-success whatsapp"> <i class="fa fa-whatsapp"
+                                            aria-hidden="true"></i>
+                                        ENVIAR COMPROVANTE</button>
                                 </a>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-12" style="float: left; font-weight: 700; margin-top: 0px; background-color: #333333;">
-                                <button class="btn btn-info" (click)="filtro('ABERTO')" style="font-weight: 700;">ABERTO</button>
-                                <button class="btn btn-warning" (click)="filtro('RESERVADO')" style="font-weight: 700;">RESERVADO</button>
-                                <button class="btn btn-success" (click)="filtro('PAGO')" style="font-weight: 700;">PAGO</button>
-                                <button class="btn btn-black" (click)="openBuscaPontosModal(classicdetails,'' , '');" style="font-weight: 700;">MEUS PONTOS</button>
+                            <div class="col-md-12"
+                                style="float: left; font-weight: 700; margin-top: 0px; background-color: #333333;">
+                                <button class="btn btn-info" (click)="filtro('ABERTO')"
+                                    style="font-weight: 700;">ABERTO</button>
+                                <button class="btn btn-warning" (click)="filtro('RESERVADO')"
+                                    style="font-weight: 700;">RESERVADO</button>
+                                <button class="btn btn-success" (click)="filtro('PAGO')"
+                                    style="font-weight: 700;">PAGO</button>
+                                <button class="btn btn-black" (click)="openBuscaPontosModal(classicdetails,'' , '');"
+                                    style="font-weight: 700;">MEUS PONTOS</button>
                             </div>
                         </div>
                     </div>
@@ -52,15 +60,18 @@
                                 <div *ngIf="mensagemPoint" class="alert alert-success" role="alert">
                                     {{mensagemPoint}}
                                 </div>
-                                
+
                                 <app-card [hidHeader]="true" cardClass="tab-card">
                                     <div class="points" *ngFor="let point of points">
-                                        <button type="button" *ngIf="point.status == 'ABERTO'" (click)="open(classic,'' , ''); getPoint(point.point)"
-                                            class="{{ checkStatusCor(point.status) }} redondo" 
+                                        <button type="button" *ngIf="point.status == 'ABERTO'"
+                                            [disabled]="rifa.status == 'PAUSADO'"
+                                            (click)="open(classic,'' , ''); getPoint(point.point)"
+                                            class="{{ checkStatusCor(point.status) }} redondo"
                                             ngbTooltip="{{ returnMensagem(point.point, point.status, point.name) }}">{{ point.point }}
                                         </button>
-                                        <button type="button" *ngIf="point.status != 'ABERTO'" (click)="getPoint(point.point)"
-                                            class="{{ checkStatusCor(point.status) }} redondo" 
+                                        <button type="button" *ngIf="point.status != 'ABERTO'"
+                                            [disabled]="rifa.status == 'PAUSADO'" (click)="getPoint(point.point)"
+                                            class="{{ checkStatusCor(point.status) }} redondo"
                                             ngbTooltip="{{ returnMensagem(point.point, point.status, point.name) }}">{{ point.point }}
                                         </button>
                                     </div>
@@ -71,9 +82,9 @@
                 </div>
             </div>
         </div>
-            
+
         <section id="pagar" style="background-color: #333333; color: cornsilk; font-weight: 600;">
-            
+
             <div class="container" style="background-color: #333333; color: cornsilk; font-weight: 600;">
                 <h2 class="center"> Como pagar?</h2>
                 <div class="row">
@@ -82,7 +93,7 @@
                         <p class="center">
                             Banco do Brasil <br>
                             Ag: 3350-2<br>
-                            Conta Poupança: 14.332-4 <br> 
+                            Conta Poupança: 14.332-4 <br>
                             Variacao: 51 <br>
                             Diego Ramon Rodrigues Alves <br>
                             Cpf: 047.470.473-44
@@ -147,23 +158,51 @@
                         <img src="assets/img/mercadopago.jpg" class="img-thumbnail">
                         <p class="center">
                             Pagar via Boleto e Cartão de Crédito<br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-7166542b-7177-4d54-ba70-8a9b481159d6">Pagar: R$ 10,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-f2183097-14de-48ab-bf87-8a6cd41f924a">Pagar: R$ 13,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-107c492b-1247-41e2-b11c-6f35980daca9">Pagar: R$ 14,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-5ea7dd73-73d0-443b-9649-3a9c17bb09bc">Pagar: R$ 20,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-422ac393-2d5a-4bee-8a70-65a3d5b6a52b">Pagar: R$ 26,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-74ac81d3-8200-4887-9a82-a1946d207d6e">Pagar: R$ 48,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-dc9f69d3-9515-4ce7-a15c-75c1c8f7e542">Pagar: R$ 50,00</a>  <br>
-                           
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-65a16a43-e7e7-47ea-b478-670eec9a9458">Pagar: R$ 75,00</a>  <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-7166542b-7177-4d54-ba70-8a9b481159d6">Pagar:
+                                R$ 10,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-f2183097-14de-48ab-bf87-8a6cd41f924a">Pagar:
+                                R$ 13,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-107c492b-1247-41e2-b11c-6f35980daca9">Pagar:
+                                R$ 14,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-5ea7dd73-73d0-443b-9649-3a9c17bb09bc">Pagar:
+                                R$ 20,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-422ac393-2d5a-4bee-8a70-65a3d5b6a52b">Pagar:
+                                R$ 26,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-74ac81d3-8200-4887-9a82-a1946d207d6e">Pagar:
+                                R$ 48,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-dc9f69d3-9515-4ce7-a15c-75c1c8f7e542">Pagar:
+                                R$ 50,00</a> <br>
 
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-1e655bb9-943f-4ffd-ae0c-eb72875bb6e4">Pagar: R$ 90,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-baa72166-b60e-4ef8-a8d1-4942421627f3">Pagar: R$ 100,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-7af5cff8-5a6c-4dea-a730-022dc404162d">Pagar: R$ 120,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-83b9ec5c-02e4-4089-b6a4-ee2e3f9a4cdf">Pagar: R$ 140,00</a>  <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-65a16a43-e7e7-47ea-b478-670eec9a9458">Pagar:
+                                R$ 75,00</a> <br>
 
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-f5972ae8-042e-437a-91d1-21a463beb5d4">Pagar: R$ 150,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-a2e2c172-abdc-496e-97b7-7a7162aa0bae">Pagar: R$ 200,00</a>  <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-1e655bb9-943f-4ffd-ae0c-eb72875bb6e4">Pagar:
+                                R$ 90,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-baa72166-b60e-4ef8-a8d1-4942421627f3">Pagar:
+                                R$ 100,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-7af5cff8-5a6c-4dea-a730-022dc404162d">Pagar:
+                                R$ 120,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-83b9ec5c-02e4-4089-b6a4-ee2e3f9a4cdf">Pagar:
+                                R$ 140,00</a> <br>
+
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-f5972ae8-042e-437a-91d1-21a463beb5d4">Pagar:
+                                R$ 150,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-a2e2c172-abdc-496e-97b7-7a7162aa0bae">Pagar:
+                                R$ 200,00</a> <br>
 
                         </p>
                     </div>
@@ -172,55 +211,58 @@
                 <br>
                 <div class="row center"> <br><br>
                     <div class="col-md-12">
-                        <h3 > Para os pagamentos realizados via transferência bancária, o respectivo comprovante deve ser encaminhado por WhatsApp através do link abaixo</h3>
+                        <h3> Para os pagamentos realizados via transferência bancária, o respectivo comprovante deve ser
+                            encaminhado por WhatsApp através do link abaixo</h3>
                     </div>
                     <br>
                     <div class="col-md-12">
-                        
+
                         <a href="https://api.whatsapp.com/send?phone=558999143334&text=">
-                        <button type="button" class="btn btn-success whatsapp"> <i class="fa fa-whatsapp" aria-hidden="true"></i>
-                            ENVIAR COMPROVANTE</button>
+                            <button type="button" class="btn btn-success whatsapp"> <i class="fa fa-whatsapp"
+                                    aria-hidden="true"></i>
+                                ENVIAR COMPROVANTE</button>
                         </a>
                     </div>
-                  
+
                 </div>
 
 
-                
+
 
 
             </div>
             <br>
-            
-            
+
+
 
             <br>
         </section>
 
     </div>
-    
-    
-
-
-   
 
 
 
-    
-    
+
+
+
+
+
+
+
     <footer class="footer position-relative" data-background-color="black">
         <div class="container center">
 
-            <div class="row" >
+            <div class="row">
                 <div class="col-md-3">
-    
+
                     <h5>
                         <i class="fas fa-search"></i>
                         ESCOLHA O SORTEIO</h5>
                     <p>
-                        Escolha o prêmio que gostaria de concorrer, verifique a descrição, regulamento do sorteio e fotos em caso de dúvidas entre em contato com o administrador
+                        Escolha o prêmio que gostaria de concorrer, verifique a descrição, regulamento do sorteio e
+                        fotos em caso de dúvidas entre em contato com o administrador
                     </p>
-    
+
                 </div>
                 <div class="col-md-3">
                     <h5>
@@ -233,8 +275,8 @@
                 </div>
                 <div class="col-md-3">
                     <h5>
-                        <i class="fas fa-dollar-sign"></i>                        
-                         FAÇA O PAGAMENTO</h5>
+                        <i class="fas fa-dollar-sign"></i>
+                        FAÇA O PAGAMENTO</h5>
                     <p>Faça o pagamento em umas das contas exibidas.
                         Envie o comprovante ao administrador via whatsapp.</p>
                 </div>
@@ -246,35 +288,39 @@
                         Cruze os dedos
                         Você pode ser o próximo sorteado</p>
                 </div>
-        </div>
+            </div>
 
 
             <div class="row">
-                <div class="col-md-6"> <h4>
-                    <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" target="_blank"><img class="link_thumb" src="" title="">  <i class="fab fa-instagram"></i> Instagram</a>
-                </h4>
+                <div class="col-md-6">
+                    <h4>
+                        <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" target="_blank"><img
+                                class="link_thumb" src="" title=""> <i class="fab fa-instagram"></i> Instagram</a>
+                    </h4>
                 </div>
-                <div class="col-md-6"> <h4>
-                    <a href="https://chat.whatsapp.com/E1Lv3kP6nGV27VXhXzBgIO" class="borda" target="_blank"> <i class="fab fa-whatsapp"> </i> Grupo Whatsapp  </a>
-                </h4>
+                <div class="col-md-6">
+                    <h4>
+                        <a href="https://chat.whatsapp.com/E1Lv3kP6nGV27VXhXzBgIO" class="borda" target="_blank"> <i
+                                class="fab fa-whatsapp"> </i> Grupo Whatsapp </a>
+                    </h4>
                 </div>
             </div>
 
             <div class="container">
 
-            
-            <div class="row">
-                <div class="col-md-12">
-                    <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" class="fim">
-                        Todos os direitos reservados, Rifas terra do mel
-                     </a>
-                </div>
-            </div>
-           
-        </div> 
 
-            
-           
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" class="fim">
+                            Todos os direitos reservados, Rifas terra do mel
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+
+
         </div>
     </footer>
 </div>
@@ -289,17 +335,20 @@
     <div class="modal-body">
         <form>
             <div class="form-group">
-              <label for="formGroupExampleInput">Seu nome</label>
-              <input type="text" class="form-control" id="formGroupExampleInput" [(ngModel)]="comprador.name" name="name" placeholder="Nome">
+                <label for="formGroupExampleInput">Seu nome</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" [(ngModel)]="comprador.name"
+                    name="name" placeholder="Nome">
             </div>
             <div class="form-group">
-              <label for="formGroupExampleInput2">Telefone</label>
-              <input type="text" class="form-control" id="formGroupExampleInput2" [(ngModel)]="comprador.phone" name="phone" placeholder="Telefone">
+                <label for="formGroupExampleInput2">Telefone</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" [(ngModel)]="comprador.phone"
+                    name="phone" placeholder="Telefone">
             </div>
-          </form>
+        </form>
     </div>
     <div class="modal-footer">
-        <button type="button" [disabled]="comprador.name == '' || comprador.phone == ''" class="btn btn-info" (click)="comprar(); c('Close click')">Comprar</button>
+        <button type="button" [disabled]="comprador.name == '' || comprador.phone == ''" class="btn btn-info"
+            (click)="comprar(); c('Close click')">Comprar</button>
     </div>
 </ng-template>
 
@@ -313,12 +362,14 @@
     <div class="modal-body">
         <form>
             <div class="form-group">
-              <label for="formGroupExampleInput2">Telefone</label>
-              <input type="text" class="form-control" id="formGroupExampleInput2" [(ngModel)]="phoneNumber" name="phoneNumber" placeholder="Telefone">
+                <label for="formGroupExampleInput2">Telefone</label>
+                <input type="text" class="form-control" id="formGroupExampleInput2" [(ngModel)]="phoneNumber"
+                    name="phoneNumber" placeholder="Telefone">
             </div>
-          </form>
+        </form>
     </div>
     <div class="modal-footer">
-        <button type="button" [disabled]="phoneNumber.length == 0" class="btn btn-info" (click)="filtroNumeroTelefone(); c('Close click')">Buscar</button>
+        <button type="button" [disabled]="phoneNumber.length == 0" class="btn btn-info"
+            (click)="filtroNumeroTelefone(); c('Close click')">Buscar</button>
     </div>
 </ng-template>

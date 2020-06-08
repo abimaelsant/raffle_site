@@ -1,78 +1,87 @@
-<div class="wrapper" >
-        <div class="page-header clear-filter" filter-color="black">
+<div class="wrapper">
+    <div class="page-header clear-filter" filter-color="black">
         <div class="page-header-image rellax-header imagemPrincipal" data-rellax-speed="-7"
-            style="background-image: url({{imagemPrincipal}});" > 
+            style="background-image: url({{imagemPrincipal}});">
 
         </div>
-        <div class="container" >
+        <div class="container">
             <div class="content-center brand">
-               <div class="row">
-                   <div class="col-md-12">
-                    <div class="title">
-                        <h1 class="h1-seo">{{ rifaPrincipal.vehicle.model }}</h1>
-                        <h2 class="margin-h2">{{ rifaPrincipal.vehicle.year }}</h2>
-                        <a class="btn btn-outline-warning botao-venda" href="/rifas/{{rifaPrincipal.id}}"
-                            type="button">Comprar
-                            Rifa</a>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="title">
+                            <h1 class="h1-seo">{{ rifaPrincipal.vehicle.model }}</h1>
+                            <h2 class="margin-h2">{{ rifaPrincipal.vehicle.year }}</h2>
+                            <a class="btn btn-outline-warning botao-venda" *ngIf="rifaPrincipal.status != 'PAUSADO'"
+                                href="/rifas/{{rifaPrincipal.id}}" type="button">Comprar
+                                Rifa</a>
+                            <a class="btn btn-outline-warning botao-venda" *ngIf="rifaPrincipal.status == 'PAUSADO'"
+                                href="/rifas/{{rifaPrincipal.id}}" type="button">Em Breve!</a>
+                        </div>
+
+
                     </div>
-                
+                </div>
 
-                   </div>
-               </div>
 
-                
-             
+
             </div>
         </div>
     </div>
 
-    
+
     <div class="main">
-        <div class="section"
-            style="background-color: #333333; color: cornsilk; font-weight: 600;">
+        <div class="section" style="background-color: #333333; color: cornsilk; font-weight: 600;">
             <h2 style="text-align: center;">Sorteios</h2>
-           
-           
-     
-
-                    <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'"
-                    [animation]="'slide'">
-                    <mdb-carousel-item *ngFor="let item of slides; let i = index">
-                        <div class="col-md-4" *ngFor="let card of item; let cardIndex = index">
-                            <mdb-card class="my-2" style="background-color: #333333; width: 24rem; height: 30rem;">
-                                <mdb-card-img *ngIf="card.images.length > 0" class="objectImage" [src]="card.images[0].url"
-                                    alt="Card image cap"></mdb-card-img>
-                                    <mdb-card-title style="margin-left: 10px;">
-                                        <h4 style="margin-left: 10px;">{{card.vehicle.model}} - {{ card.vehicle.year }}</h4>
-                                        <h5 style="margin-left: 10px;" class="tam">{{ card.vehicle.observation }}</h5>
-                                        <h6 style="margin-left: 10px;" class="tam">{{ card.description }}</h6>
-                                    </mdb-card-title>
 
 
-                                   <div class="col-md-12">
-                                    <a href="/rifas/{{card.id}}" mdbBtn class="btn btn-outline-warning waves-light w-100 p-3"
+
+
+            <mdb-carousel [isControls]="true" class="carousel-multi-item multi-animation" [type]="'carousel-multi-item'"
+                [animation]="'slide'">
+                <mdb-carousel-item *ngFor="let item of slides; let i = index">
+                    <div class="col-md-4" *ngFor="let card of item; let cardIndex = index">
+                        <mdb-card class="my-2" style="background-color: #333333; width: 24rem; height: 30rem;">
+                            <mdb-card-img *ngIf="card.images.length > 0" class="objectImage" [src]="card.images[0].url"
+                                alt="Card image cap"></mdb-card-img>
+                            <mdb-card-title style="margin-left: 10px;">
+                                <h4 style="margin-left: 10px;">{{card.vehicle.model}} - {{ card.vehicle.year }}</h4>
+                                <h5 style="margin-left: 10px;" class="tam">{{ card.vehicle.observation }}</h5>
+                                <h6 style="margin-left: 10px;" class="tam">{{ card.description }}</h6>
+                            </mdb-card-title>
+
+
+                            <div class="col-md-12">
+                                <a href="/rifas/{{card.id}}" mdbBtn
+                                    class="btn btn-outline-warning waves-light w-100 p-3"
                                     style="margin-left: -1px; font-weight: 700; font-size: 20px;"
                                     *ngIf="card.status == 'ESGOTADO'" mdbWavesEffect>Esgotado</a>
                                 <a href="/rifas/{{card.id}}"
                                     style="margin-left: -1px; font-weight: 700; font-size: 20px;"
-                                    *ngIf="card.status == 'ENCERRADO'" mdbBtn class="btn btn-outline-danger waves-light w-100 p-3"
-                                    mdbWavesEffect>Ver Resultado</a>
+                                    *ngIf="card.status == 'ENCERRADO'" mdbBtn
+                                    class="btn btn-outline-danger waves-light w-100 p-3" mdbWavesEffect>Ver
+                                    Resultado</a>
                                 <a href="/rifas/{{card.id}}"
                                     style="margin-left: -1px; font-weight: 700; font-size: 20px;"
-                                    *ngIf="card.status == 'ABERTO'" mdbBtn class="btn btn-outline-warning waves-light w-100 p-3"
-                                    mdbWavesEffect>Comprar Rifa</a>
-                                   </div>
-                                    
-                            </mdb-card>
-                        </div>
-                    </mdb-carousel-item>
-                </mdb-carousel>
+                                    *ngIf="card.status == 'ABERTO'" mdbBtn
+                                    class="btn btn-outline-warning waves-light w-100 p-3" mdbWavesEffect>Comprar
+                                    Rifa</a>
 
-             
-           
+                                <a href="/rifas/{{card.id}}"
+                                    style="margin-left: -1px; font-weight: 700; font-size: 20px;"
+                                    *ngIf="card.status == 'PAUSADO'" mdbBtn
+                                    class="btn btn-outline-warning waves-light w-100 p-3" mdbWavesEffect>Em Breve!</a>
+                            </div>
+
+                        </mdb-card>
+                    </div>
+                </mdb-carousel-item>
+            </mdb-carousel>
+
+
+
         </div>
         <section id="pagar" style="background-color: #333333; color: cornsilk; font-weight: 600;">
-            
+
             <div class="container" style="background-color: #333333; color: cornsilk; font-weight: 600;">
                 <h2 class="center"> Como pagar?</h2>
                 <div class="row">
@@ -81,7 +90,7 @@
                         <p class="center">
                             Banco do Brasil <br>
                             Ag: 3350-2<br>
-                            Conta Poupança: 14.332-4 <br> 
+                            Conta Poupança: 14.332-4 <br>
                             Variacao: 51 <br>
                             Diego Ramon Rodrigues Alves <br>
 
@@ -142,23 +151,51 @@
                         <img src="assets/img/mercadopago.jpg" class="img-thumbnail">
                         <p class="center">
                             Pagar via Boleto e Cartão de Crédito<br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-7166542b-7177-4d54-ba70-8a9b481159d6">Pagar: R$ 10,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-f2183097-14de-48ab-bf87-8a6cd41f924a">Pagar: R$ 13,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-107c492b-1247-41e2-b11c-6f35980daca9">Pagar: R$ 14,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-5ea7dd73-73d0-443b-9649-3a9c17bb09bc">Pagar: R$ 20,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-422ac393-2d5a-4bee-8a70-65a3d5b6a52b">Pagar: R$ 26,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-74ac81d3-8200-4887-9a82-a1946d207d6e">Pagar: R$ 48,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-dc9f69d3-9515-4ce7-a15c-75c1c8f7e542">Pagar: R$ 50,00</a>  <br>
-                           
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-65a16a43-e7e7-47ea-b478-670eec9a9458">Pagar: R$ 75,00</a>  <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-7166542b-7177-4d54-ba70-8a9b481159d6">Pagar:
+                                R$ 10,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-f2183097-14de-48ab-bf87-8a6cd41f924a">Pagar:
+                                R$ 13,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-107c492b-1247-41e2-b11c-6f35980daca9">Pagar:
+                                R$ 14,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-5ea7dd73-73d0-443b-9649-3a9c17bb09bc">Pagar:
+                                R$ 20,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-422ac393-2d5a-4bee-8a70-65a3d5b6a52b">Pagar:
+                                R$ 26,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-74ac81d3-8200-4887-9a82-a1946d207d6e">Pagar:
+                                R$ 48,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-dc9f69d3-9515-4ce7-a15c-75c1c8f7e542">Pagar:
+                                R$ 50,00</a> <br>
 
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-1e655bb9-943f-4ffd-ae0c-eb72875bb6e4">Pagar: R$ 90,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-baa72166-b60e-4ef8-a8d1-4942421627f3">Pagar: R$ 100,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-7af5cff8-5a6c-4dea-a730-022dc404162d">Pagar: R$ 120,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-83b9ec5c-02e4-4089-b6a4-ee2e3f9a4cdf">Pagar: R$ 140,00</a>  <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-65a16a43-e7e7-47ea-b478-670eec9a9458">Pagar:
+                                R$ 75,00</a> <br>
 
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-f5972ae8-042e-437a-91d1-21a463beb5d4">Pagar: R$ 150,00</a>  <br>
-                           <a href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-a2e2c172-abdc-496e-97b7-7a7162aa0bae">Pagar: R$ 200,00</a>  <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-1e655bb9-943f-4ffd-ae0c-eb72875bb6e4">Pagar:
+                                R$ 90,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-baa72166-b60e-4ef8-a8d1-4942421627f3">Pagar:
+                                R$ 100,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-7af5cff8-5a6c-4dea-a730-022dc404162d">Pagar:
+                                R$ 120,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-83b9ec5c-02e4-4089-b6a4-ee2e3f9a4cdf">Pagar:
+                                R$ 140,00</a> <br>
+
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-f5972ae8-042e-437a-91d1-21a463beb5d4">Pagar:
+                                R$ 150,00</a> <br>
+                            <a
+                                href="https://www.mercadopago.com.br/checkout/v1/redirect?pref_id=137720828-a2e2c172-abdc-496e-97b7-7a7162aa0bae">Pagar:
+                                R$ 200,00</a> <br>
 
                         </p>
                     </div>
@@ -167,43 +204,46 @@
                 <br>
                 <div class="row center"> <br><br>
                     <div class="col-md-12">
-                        <h3 > Para os pagamentos realizados via transferência bancária, o respectivo comprovante deve ser encaminhado por WhatsApp através do link abaixo</h3>
+                        <h3> Para os pagamentos realizados via transferência bancária, o respectivo comprovante deve ser
+                            encaminhado por WhatsApp através do link abaixo</h3>
                     </div>
                     <br>
                     <div class="col-md-12">
-                        
+
                         <a href="https://api.whatsapp.com/send?phone=558999143334&text=">
-                            <button type="button" class="btn btn-success whatsapp"> <i class="fa fa-whatsapp" aria-hidden="true"></i>
+                            <button type="button" class="btn btn-success whatsapp"> <i class="fa fa-whatsapp"
+                                    aria-hidden="true"></i>
                                 ENVIAR COMPROVANTE</button>
-                            </a>
+                        </a>
                     </div>
-                  
+
                 </div>
             </div>
             <br>
             <br>
         </section>
-       
-       
-    
 
-      
+
+
+
+
     </div>
-    
-    
+
+
     <footer class="footer position-relative" data-background-color="black">
         <div class="container center">
 
-            <div class="row" >
+            <div class="row">
                 <div class="col-md-3">
-    
+
                     <h5>
                         <i class="fas fa-search"></i>
                         ESCOLHA O SORTEIO</h5>
                     <p>
-                        Escolha o prêmio que gostaria de concorrer, verifique a descrição, regulamento do sorteio e fotos em caso de dúvidas entre em contato com o administrador
+                        Escolha o prêmio que gostaria de concorrer, verifique a descrição, regulamento do sorteio e
+                        fotos em caso de dúvidas entre em contato com o administrador
                     </p>
-    
+
                 </div>
                 <div class="col-md-3">
                     <h5>
@@ -216,8 +256,8 @@
                 </div>
                 <div class="col-md-3">
                     <h5>
-                        <i class="fas fa-dollar-sign"></i>                        
-                         FAÇA O PAGAMENTO</h5>
+                        <i class="fas fa-dollar-sign"></i>
+                        FAÇA O PAGAMENTO</h5>
                     <p>Faça o pagamento em umas das contas exibidas.
                         Envie o comprovante ao administrador via whatsapp.</p>
                 </div>
@@ -229,35 +269,39 @@
                         Cruze os dedos
                         Você pode ser o próximo sorteado</p>
                 </div>
-        </div>
+            </div>
 
 
             <div class="row">
-                <div class="col-md-6"> <h4>
-                    <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" target="_blank"><img class="link_thumb" src="" title="">  <i class="fab fa-instagram"></i> Instagram</a>
-                </h4>
+                <div class="col-md-6">
+                    <h4>
+                        <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" target="_blank"><img
+                                class="link_thumb" src="" title=""> <i class="fab fa-instagram"></i> Instagram</a>
+                    </h4>
                 </div>
-                <div class="col-md-6"> <h4>
-                    <a href="https://chat.whatsapp.com/E1Lv3kP6nGV27VXhXzBgIO" class="borda" target="_blank"> <i class="fab fa-whatsapp"> </i> Grupo Whatsapp  </a>
-                </h4>
+                <div class="col-md-6">
+                    <h4>
+                        <a href="https://chat.whatsapp.com/E1Lv3kP6nGV27VXhXzBgIO" class="borda" target="_blank"> <i
+                                class="fab fa-whatsapp"> </i> Grupo Whatsapp </a>
+                    </h4>
                 </div>
             </div>
 
             <div class="container">
 
-            
-            <div class="row">
-                <div class="col-md-12">
-                    <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" class="fim">
-                        Todos os direitos reservados, Rifas terra do mel
-                     </a>
-                </div>
-            </div>
-           
-        </div> 
 
-            
-           
+                <div class="row">
+                    <div class="col-md-12">
+                        <a href="https://www.instagram.com/rifasterradomel/?hl=pt-br" class="fim">
+                            Todos os direitos reservados, Rifas terra do mel
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+
+
         </div>
     </footer>
 </div>
