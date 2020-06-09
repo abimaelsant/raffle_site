@@ -34,8 +34,7 @@
                             <div class="col-md-12">
 
                                 <a href="https://api.whatsapp.com/send?phone=558999143334&text=">
-                                    <button type="button" class="btn btn-success whatsapp"> <i class="fa fa-whatsapp"
-                                            aria-hidden="true"></i>
+                                    <button type="button" class="btn btn-success whatsapp"> 
                                         ENVIAR COMPROVANTE</button>
                                 </a>
                             </div>
@@ -44,11 +43,13 @@
                             <div class="col-md-12"
                                 style="float: left; font-weight: 700; margin-top: 0px; background-color: #333333;">
                                 <button class="btn btn-info" (click)="filtro('ABERTO')"
-                                    style="font-weight: 700;">ABERTO</button>
+                                    style="font-weight: 700;">{{abertos}} - ABERTO</button>
                                 <button class="btn btn-warning" (click)="filtro('RESERVADO')"
-                                    style="font-weight: 700;">RESERVADO</button>
+                                    style="font-weight: 700;">{{reservados}} - RESERVADO</button>
                                 <button class="btn btn-success" (click)="filtro('PAGO')"
-                                    style="font-weight: 700;">PAGO</button>
+                                    style="font-weight: 700;">{{pagos}} - PAGO</button>
+                                <button class="btn btn-primary" (click)="detalhe()"
+                                    style="font-weight: 700;">TODOS</button>
                                 <button class="btn btn-black" (click)="openBuscaPontosModal(classicdetails,'' , '');"
                                     style="font-weight: 700;">MEUS PONTOS</button>
                             </div>

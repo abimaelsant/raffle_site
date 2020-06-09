@@ -23,6 +23,10 @@ export class RifaDetalheComponent implements OnInit {
     comprador:any = new Object({ point: '', name: '', phone: '' });
     ganhador:any = null;
     phoneNumber:any = '';
+    abertos:number = 0;
+    reservados:number = 0;
+    pagos:number = 0;
+    tam:any = []
     constructor(private service: GeralService, private route: ActivatedRoute, private modalService: NgbModal) {
         this.id = this.route.snapshot.paramMap.get("id");
         this.detalhe()
@@ -47,6 +51,7 @@ export class RifaDetalheComponent implements OnInit {
         this.service.httpClient.get(this.service.url + 'raffles/' + this.id).subscribe(res => {
             this.rifa = res;
             this.points = this.rifa.point_sale;
+            this.countPontos(this.points)
             this.ganhador = this.points.find(res => res.award_sentence == true);
         })
     }
@@ -78,6 +83,7 @@ export class RifaDetalheComponent implements OnInit {
         this.service.httpClient.get(this.service.url + 'raffles/' + this.id + '?'+params).subscribe(res => {
             this.rifa = res;
             this.points = this.rifa.point_sale;
+            //this.countPontos(this.points)
         })
     }
 
@@ -90,6 +96,7 @@ export class RifaDetalheComponent implements OnInit {
         this.service.httpClient.get(this.service.url + 'raffles/' + this.id + '?'+params).subscribe(res => {
             this.rifa = res;
             this.points = this.rifa.point_sale;
+            //this.countPontos(this.points)
         })
     }
 
@@ -156,6 +163,21 @@ export class RifaDetalheComponent implements OnInit {
             return 'by clicking on a backdrop';
         } else {
             return  `with: ${reason}`;
+        }
+    }
+
+    countPontos(points) {
+        this.abertos = 0, this.reservados = 0, this.pagos = 0
+        for(const res of points) {
+            if(res.status === 'ABERTO') {
+                this.abertos++
+            }
+            if(res.status === 'RESERVADO') {
+                this.reservados++
+            }
+            if(res.status === 'PAGO') {
+                this.pagos++
+            }
         }
     }
 }
